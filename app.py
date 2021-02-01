@@ -10,16 +10,25 @@ app = Flask(__name__)
 # Use PyMongo to establish Mongo connection
 mongo = PyMongo(app, uri="mongodb://localhost:27017/ulta_db")
 
-# Route to render index.html template using data from Mongo
+def parse_json(data):
+    return json.loads(json_util.dumps(data))
+
+# Route to render data from Mongo
 @app.route("/")
 def home():
 
-    # Find data from the mongo database
+    #Find data from the mongo database
     ulta_data = mongo.db.ulta.find()
-
+    
+    ulta_list = []
     # Return data
     for data in ulta_data:
-        return json.dumps(data, default=str)
+        #data = json.dumps(data, default=str)
+        data = parse_json(data)
+        ulta_list.append(data)
+
+    return ulta_list
+
 
 if __name__ == "__main__":
     app.run(debug=True)
