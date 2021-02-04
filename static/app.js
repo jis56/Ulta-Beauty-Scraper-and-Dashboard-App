@@ -1,13 +1,11 @@
-var data;
-
 //init function to fill in the select option
 
-function init() {
+/* function init() {
     data = ulta_data;
     var selectValues = [];
     ulta_data.forEach((x)=>{
       var selectValue=x.product
-      selectValues.push(selectValue)
+      selectValues.push
     })
     //var selectValues = ulta_data.product;
     var selectOption = d3.select("#selDataset");
@@ -26,96 +24,104 @@ function init() {
     d3.select('#selDataset').property('value', 'Blush');
   
     plotFunctions();
-  };
+  }; */
 
+var svgWidth = 960;
+var svgHeight = 500;
 
-
-function plotFunctions() {
-  var valueSelect = d3.select("#selDataset").node().value;
-  console.log(valueSelect);
-  demographicInfo(valueSelect);
-  barChart(valueSelect);
-  bubbleChart(valueSelect);
-  gaugeChart(valueSelect);
+var margin = {
+  top: 20,
+  right: 40,
+  bottom: 60,
+  left: 100
 };
+  
 
-function demographicInfo(valueSelect) {
-    var filteredValue = data.metadata.filter(d => d.product == +valueSelect);
+// Calculate chart width and height
+var width = svgWidth - margin.left - margin.right;
+var height = svgHeight - margin.top - margin.bottom;
 
-    var panel = d3.select(".panel-body");
-    panel.html("");
-    panel.append("p").text(`ID: ${filteredValue[0].id}`);
-    panel.append("p").text(`Ethnicity: ${filteredValue[0].ethnicity}`);
-    panel.append("p").text(`Gender: ${filteredValue[0].gender}`);
-    panel.append("p").text(`Age: ${filteredValue[0].age}`);
-    panel.append("p").text(`Location: ${filteredValue[0].location}`);
-    panel.append("p").text(`Bbtype: ${filteredValue[0].bbtype}`);
-    panel.append("p").text(`Wfreq: ${filteredValue[0].wfreq}`);
-    }
+// Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
+var svg = d3.select(".chart")
+  .append("svg")
+  .attr("width", svgWidth)
+  .attr("height", svgHeight);
 
-function barChart(valueSelect) {
-  var filteredValue = data.samples.filter(d => d.id == +valueSelect);
-  var ouid = filteredValue.map(d => d.otu_ids);
-  ouid = fixOuid(ouid[0].slice(0, 10));
-  var valueX = filteredValue.map(d => d.sample_values);
-  valueX = valueX[0].slice(0, 10);
+var chartGroup = svg.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  var otu_label = filteredValue.map(d => d.otu_labels);
-  var names = fixBacteria(otu_label[0]).slice(0, 10);
-  console.log(ouid);
-  console.log(valueX);
-  console.log(otu_label);
-  console.log(names);
+// Import Data
 
-  var trace = {
-    x: valueX,
-    y: ouid,
-    text: names,
-    type: "bar",
-    orientation: "h"
-  };
+// Step 2: Create scale functions
+// ==============================
+var xLinearScale = d3.scaleLinear()
+  .domain([0, d3.max(ulta_data, d => d.price)])
+  .range([0, width]);
 
-  var layout = {
-    yaxis: {
-      autorange: "reversed"
-    }
-  };
+var yLinearScale = d3.scaleLinear()
+  .domain([1, d3.max(ulta_data, d => d.rating)])
+  .range([height, 0]);
 
-  var barData = [trace];
+// Step 3: Create axis functions
+// ==============================
+var bottomAxis = d3.axisBottom(xLinearScale);
+var leftAxis = d3.axisLeft(yLinearScale);
 
-  Plotly.newPlot("bar", barData, layout);
-}
+// Step 4: Append Axes to the chart
+// ==============================
+chartGroup.append("g")
+  .attr("transform", `translate(0, ${height})`)
+  .call(bottomAxis);
 
+chartGroup.append("g")
+  .call(leftAxis);
 
-function bubbleChart(valueSelect) {
-  var filteredValue = data.samples.filter(value => value.id == +valueSelect);
-  var ouid = filteredValue.map(d => d.otu_ids);
-  ouid = ouid[0];
-  var yValue = filteredValue.map(d => d.sample_values);
-  yValue = yValue[0];
+// Step 5: Create Circles
+// ==============================
+var circlesGroup = chartGroup.selectAll("circle")
+.data(ulta_data)
+.enter()
+.append("circle")
+.attr("cx", d => xLinearScale(d.price))
+.attr("cy", d => yLinearScale(d.rating))
+.attr("r", "10")
+.attr("fill", "pink")
+.attr('stroke', '#e3e3e3')
+.attr("opacity", "1");
 
-  var otu_label = filteredValue.map(d => d.otu_labels);
-  otu_label = fixBacteria(otu_label[0]);
+// Step 6: Initialize tool tip
+// ==============================
+var toolTip = d3.tip()
+  .attr("class", "tooltip")
+  .offset([80, -60])
+  .html(function(d) {
+    return (`Product:${d.product}<br>Price: ${d.price}<br>Rating: ${d.rating}`);
+  });
 
-  var trace1 = {
-    x: ouid,
-    y: yValue,
-    mode: "markers",
-    marker: {
-      color: ouid,
-      size: yValue
-    },
-    text: otu_label
-  };
+// Step 7: Create tooltip in the chart
+// ==============================
+chartGroup.call(toolTip);
 
-  var bubbleData = [trace1];
+// Step 8: Create event listeners to display and hide the tooltip
+// ==============================
+circlesGroup.on("click", function(data) {
+  toolTip.show(data, this);
+})
+  // onmouseout event
+  .on("mouseout", function(data, index) {
+    toolTip.hide(data);
+  });
 
-  var layout = {
-    showlegend: false,
-    xaxis: { title: "OTU ID" }
-  };
+// Create axes labels
+chartGroup.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 0 - margin.left + 40)
+  .attr("x", 0 - (height / 2))
+  .attr("dy", "1em")
+  .attr("class", "axisText")
+  .text("Rating");
 
-  Plotly.newPlot("bubble", bubbleData, layout);
-}
-
-init();
+chartGroup.append("text")
+  .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
+  .attr("class", "axisText")
+  .text("Price");
