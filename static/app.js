@@ -122,7 +122,7 @@ function createChart() {
     var panelInfo = `Category: ${data.product_type}`; 
     panelInfo += `<br>Brand: ${data.brand}`;
     panelInfo += `<br>Product: ${data.product}`;
-    panelInfo += `<br>Price: ${data.price}`;
+    panelInfo += `<br>Price: $${data.price}`;
     panelInfo += `<br>Rating: ${data.rating}`;
     panelInfo +='<br><br><img src = "'+ data.image_url + '">';
 
@@ -140,12 +140,12 @@ function createChart() {
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .attr("class", "axisText")
-    .text("Rating");
+    .text("Rating (out of 5)");
 
   chartGroup.append("text")
     .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
     .attr("class", "axisText")
-    .text("Price");
+    .text("Price (USD)");
 }
 
 createChart();
