@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <button type="button" class="btn btn-outline-*">Foundation</button>
+          <button type="button" onclick="javascript:createChart('foundation')" class="btn btn-outline-*">Foundation</button>
         </li>
         <li class="nav-item">
           <button type="button" class="btn btn-outline-*">Eyeshadow</button>
@@ -59,7 +59,6 @@
             <div id="sample-metadata" class="panel-body"></div>
           </div>
         </div>
-            <!-- append chart-->
           </div>
         </div>
       </div>
@@ -71,8 +70,28 @@
     </footer>
   </div>
   <script type="text/javascript">
-    var ulta_data = {{ ulta_data | tojson }}
+    var ulta_data = "";
+    {% if ulta_data is defined %}
+      ulta_data = {{ ulta_data | tojson }}
+    {% endif %}
+    var foundation_data = "";
+    {% if foundation_data is defined %}
+      foundation_data = {{ foundation_data | tojson }}
+    {% endif %}    
+    var eyeshadow_data = "";
+    {% if eyeshadow_data is defined %}
+      eyeshadow_data = {{ eyeshadow_data | tojson }}
+    {% endif %}    
+    var blush_data = "";
+    {% if blush_data is defined %}
+      blush_data = {{ blush_data | tojson }}
+    {% endif %}    
+    var lipstick_data = "";
+    {% if lipstick_data is defined %}
+      lipstick_data = {{ lipstick_data | tojson }}
+    {% endif %}
   </script>
+  <script src="../static/js/jquery.min.js"></script>
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
