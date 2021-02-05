@@ -32,7 +32,7 @@ def foundation():
     for data in mongo.db.ulta.find({"product_type":"Foundation"}, {"_id":False}):
         foundation_data.append(data)
 
-    return foundation_data
+    return jsonify(foundation_data)
 
 @app.route("/eyeshadow")
 def eyeshadow():
@@ -41,7 +41,9 @@ def eyeshadow():
     #Find data from the mongo database
     for data in mongo.db.ulta.find({"product_type":"Eyeshadow"}, {"_id":False}):
         eyeshadow_data.append(data)
-    return render_template("index.html", eyeshadow_data = eyeshadow_data)
+
+    return jsonify(eyeshadow_data)
+
 
 @app.route("/blush")
 def blush():
@@ -51,7 +53,7 @@ def blush():
     for data in mongo.db.ulta.find({"product_type":"Blush"}, {"_id":False}):
         blush_data.append(data)
 
-    return render_template("index.html", blush_data = blush_data)
+    return jsonify(blush_data)
 
 @app.route("/lipstick")
 def lipstick():
@@ -60,7 +62,8 @@ def lipstick():
     #Find data from the mongo database
     for data in mongo.db.ulta.find({"product_type":"Lipstick"}, {"_id":False}):
         lipstick_data.append(data)
-    return render_template("index.html", lipstick_data = lipstick_data)
+    
+    return jsonify(lipstick_data)
 
 if __name__ == "__main__":
     app.run(debug=True)

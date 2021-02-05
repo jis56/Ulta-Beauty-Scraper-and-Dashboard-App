@@ -26,17 +26,19 @@
     plotFunctions();
   }; */
 
-  function createChart(productID) {
+  function updateChart(productID) {
       $.getJSON('/'+productID, {
       }, function(data) {
-        console.log(data);
+        ulta_data = data;
+        createChart();
       })
       .fail(function() { alert("error"); })
-      .always(function() { alert("complete"); });
+      //.always(function() { alert("complete"); });
       return false;
   }; 
 
-  //console.log(ulta_data)
+function createChart() {
+  $(".chart").html("");
   var svgWidth = 960;
   var svgHeight = 500;
 
@@ -116,6 +118,15 @@
   // ==============================
   circlesGroup.on("click", function(data) {
     toolTip.show(data, this);
+    var panel = d3.select(".panel-body");
+    var panelInfo = `Category: ${data.product_type}`; 
+    panelInfo += `<br>Brand: ${data.brand}`;
+    panelInfo += `<br>Product: ${data.product}`;
+    panelInfo += `<br>Price: ${data.price}`;
+    panelInfo += `<br>Rating: ${data.rating}`;
+    panelInfo +='<br><br><img src = "'+ data.image_url + '">';
+
+    panel.html(panelInfo);
   })
     // onmouseout event
     .on("mouseout", function(data, index) {
@@ -135,7 +146,7 @@
     .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
     .attr("class", "axisText")
     .text("Price");
+}
 
-circlesGroup.on("click", function(data) {
-  toolTip.show(data, this);
-})
+createChart();
+
