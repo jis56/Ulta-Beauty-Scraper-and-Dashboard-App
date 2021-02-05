@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MakeUp Planet</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">ß
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+         
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 jumbotron text-center">
+        <h1>MakeUp World</h1>
+        <p>Take a Tour on Choice</p>
+        <title>Button effect</title> 
+    <style> 
+        body { 
+            padding: 0; 
+            margin: 0; 
+        } 
+  
+        a { 
+            position: absolute; 
+            top: 85%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 180px; 
+            height: 60px; 
+            color: white; 
+            text-decoration: none; 
+            text-align: center; 
+            padding-top: 30px; 
+            font-size: 20px; 
+            overflow: hidden; 
+            background: green; 
+        } 
+  
+        a::before { 
+            content: ""; 
+            position: absolute; 
+            width: 0; 
+            height: 0; 
+            left: 0; 
+            bottom: 0; 
+            border-style: solid; 
+            border-color: rgb(247, 0, 255); 
+            border-width: 80px 100px; 
+            z-index: -1; 
+            transform: rotate(360deg); 
+            transition: 1s; 
+            transform-origin: left; 
+        } 
+  
+        a:hover::before { 
+            border-color: #00f; 
+            transform: rotate(60deg); 
+        } 
+    </style> 
+    <body> 
+      <a href="#">Search</a> 
+  </body> 
+
+    <!--Create dropdowns-->
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="well">
+          <label for="category">Choose a Category:</label>
+          <select name="category" id="category">
+            <optgroup label="Category">
+              <option value="Foundation">Foundation</option>
+              <option value="mascara">Mascara</option>
+              <option value="blush">Blush</option>
+              <option value="lipstick">Lipstick</option>
+              <option value="eyeshadow">Eyeshadow</option>
+            </optgroup>
+            <form name="form1" id="form1" action="/action_page.php">
+              Foundation: <select name="foundation" id="foundation">
+                <option value="" selected="selected">Select foundation</option>
+              </select>
+              <br><br>
+              Price: <select name="price" id="price">
+                <option value="" selected="selected">Please select price</option>
+              </select>
+              <br><br>
+              Ratings: <select name="ratings" id="ratings">
+                <option value="" selected="selected">Please select ratings</option>
+              </select>
+              <br><br>
+              <input type="submit" value="Submit">
+            </form>
+            
+            
+        </div>
+      </div>
+      <!-- Brand Column -->
+     <div class="col-md-3">
+        <div id="brandinfo">
+          <div id="brand_name">
+            <!-- <h3>Brand:  </h3> -->
+          </div>
+        </div>
+      </div>
+      <!-- Price Column -->
+      <div class="col-md-3">
+        <div id="priceinfo">
+          <div id="price">
+            <!-- <h3>Price:  </h3> -->
+          </div>
+        </div>
+      </div>
+      <!-- Rating Column -->
+      <div class="col-md-3">
+        <div id="productrating">
+          <div id="product_rating">
+            <!-- <h3>Product_Rating:  </h3> -->
+          </div>
+        </div>
+      </div>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Product Info</h3>
+          </div>
+          <div id="product_name" class="panel-body"></div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div id="bar"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="gauge"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="bubble"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="app.js"></script>
+  <script src="ulta.csv"></script>
+  
+</body>
+
+</html>
