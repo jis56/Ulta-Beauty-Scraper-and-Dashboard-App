@@ -1,41 +1,13 @@
-//init function to fill in the select option
-
-/* function init() {
-    data = ulta_data;
-    var selectValues = [];
-    ulta_data.forEach((x)=>{
-      var selectValue=x.product
-      selectValues.push
+function updateChart(productID) {
+    $.getJSON('/'+productID, {
+    }, function(data) {
+      ulta_data = data;
+      createChart();
     })
-    //var selectValues = ulta_data.product;
-    var selectOption = d3.select("#selDataset");
-
-    console.log(selectValues)
-
-    selectValues.forEach(value => {
-      selectOption
-        .append("option")
-        .text(value)
-        .attr("value", function() {
-          return value;
-        });
-    });
-    d3.selectAll("#selDataset").on("change", plotFunctions);
-    d3.select('#selDataset').property('value', 'Blush');
-  
-    plotFunctions();
-  }; */
-
-  function updateChart(productID) {
-      $.getJSON('/'+productID, {
-      }, function(data) {
-        ulta_data = data;
-        createChart();
-      })
-      .fail(function() { alert("error"); })
-      //.always(function() { alert("complete"); });
-      return false;
-  }; 
+    .fail(function() { alert("error"); })
+    //.always(function() { alert("complete"); });
+    return false;
+}; 
 
 function createChart() {
   $(".chart").html("");
