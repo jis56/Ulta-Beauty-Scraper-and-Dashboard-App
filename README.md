@@ -1,6 +1,8 @@
 ## Project-2
 
-The aim of this project was to create a makeup dashboard that incorporates both back-end data access and front-end visualization. In order to create this, the following was done:
+The aim of this project was to create a makeup dashboard that incorporates both back-end data access and front-end visualization that allows clients to be able to view and compare products based on price and rating as well as filter the data by category of makeup.
+
+In order to create this, the following was done:
 
 # Back-End
   - In Jupyter Notebook, web scrapper was created with beautifulsoup and splinter to scrape bestselling producct urls from Ulta.com within 4 categories: foundation, eyeshadow,         lipstick, and blush
@@ -20,4 +22,6 @@ The aim of this project was to create a makeup dashboard that incorporates both 
     - Using D3 library, function created to create scatterplot based on data accessed
     - Using jQuery, function created to pull JSON data from different routes depending on button pressed
   - Within D3 function, circlegroup function created to fill panel product HTML depending on which product circle is clicked.
+  
+  ![Alt text](static/img/homepage.PNG?raw=true "Homepage")
    
