@@ -1,6 +1,6 @@
 ## Project-2
 
-The aim of this project was to create a makeup dashboard that incorporates both back-end data access and front-end visualization that allows clients to be able to view and compare products from Ulta based on price and rating as well as filter the data by category of makeup.
+The aim of this project was to create a makeup dashboard that incorporates both back-end data access and front-end visualization that allows clients to be able to view and compare products from Ulta based on price and rating as well as filter the data by category of makeup. An important part of this project was incorporating asynchronous live loading between the database and the dashboard.
 
 In order to create this, the following was done:
 
@@ -21,7 +21,7 @@ In order to create this, the following was done:
   - A Javascript app was created that connected the Flask app routes to our html
     - Using D3 library, function created to create scatterplot based on data accessed
     - Using jQuery, function created to pull JSON data from different routes depending on button pressed and replace the data variable used in the D3 function
-  - Within the D3 function, circlegroup onclick function created to fill panel product HTML depending on which product circle is clicked
+  - Within the D3 function, circlegroup onclick function created to rewrite panel product HTML depending on which product circle is clicked
   
   Homepage
   ![Alt text](static/img/homepage.PNG?raw=true "Homepage")
