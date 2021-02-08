@@ -1,10 +1,10 @@
-## Project-2
+# Project-2
 
 The aim of this project was to create a makeup dashboard that incorporates both back-end data access and front-end visualization that allows clients to be able to view and compare products from Ulta based on price and rating as well as filter the data by category of makeup. An important part of this project was incorporating asynchronous live loading between the database and the dashboard.
 
 In order to create this, the following was done:
 
-# Back-End
+## Back-End
   - In Jupyter Notebook, web scrapper was created with beautifulsoup and splinter to scrape bestselling product urls from Ulta.com within 4 categories: foundation, eyeshadow,         lipstick, and blush
     - These urls were then scrapped for the following product information: brand name, product name, price, rating, and image URL
     - Scrapped information was appended to a list then transformed into a dictionary
@@ -13,7 +13,7 @@ In order to create this, the following was done:
     - Home route returned all data within the database
     - Four other routes were created that filtered the data by category
   
- # Front-End
+ ## Front-End
   - HTML page was created with CSS style to hold our visualization
     - Buttons with Javascript on-click function coded in the navbar that allows for filtering data by category
     - Empty graph and product panel div coded to be filled
