@@ -23,5 +23,12 @@ In order to create this, the following was done:
     - Using jQuery, function created to pull JSON data from different routes depending on button pressed
   - Within D3 function, circlegroup function created to fill panel product HTML depending on which product circle is clicked.
   
+  Homepage
   ![Alt text](static/img/homepage.PNG?raw=true "Homepage")
+  
+  Filtered by eyeshadow
+  ![Alt text](static/img/filteredpage.PNG?raw=true "Homepage")
+  
+  Product panel
+  ![Alt text](static/img/productpanel.PNG?raw=true "Homepage")
    
