@@ -19,7 +19,7 @@ In order to create this, the following was done:
     - Empty graph and product panel div coded to be filled
   - Jinja2 was utilized in the HTML to link the variable created from our Flask app
   - A Javascript app was created that connected the Flask app routes to our html
-    - Using D3 library, function created to create scatterplot based on data accessed
+    - Using D3 library, function created to build price v rating scatterplot based on data accessed
     - Using jQuery, function created to pull JSON data from different routes depending on button pressed and replace the data variable used in the D3 function
   - Within the D3 function, circlegroup onclick function created to rewrite panel product HTML depending on which product circle is clicked
   
