@@ -5,7 +5,7 @@ The aim of this project was to create a makeup dashboard that incorporates both 
 In order to create this, the following was done:
 
 # Back-End
-  - In Jupyter Notebook, web scrapper was created with beautifulsoup and splinter to scrape bestselling producct urls from Ulta.com within 4 categories: foundation, eyeshadow,         lipstick, and blush
+  - In Jupyter Notebook, web scrapper was created with beautifulsoup and splinter to scrape bestselling product urls from Ulta.com within 4 categories: foundation, eyeshadow,         lipstick, and blush
     - These urls were then scrapped for the following product information: brand name, product name, price, rating, and image URL
     - Scrapped information was appended to a list then transformed into a dictionary
   - Using the dictionary, a Mongo database was created
