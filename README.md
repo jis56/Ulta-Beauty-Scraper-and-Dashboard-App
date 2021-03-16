@@ -1,4 +1,4 @@
-# Project-2
+# Ulta Beauty App
 
 The aim of this project was to create a makeup dashboard that incorporates both back-end data access and front-end visualization that allows clients to be able to view and compare products from Ulta based on price and rating as well as filter the data by category of makeup. An important part of this project was incorporating asynchronous live loading between the database and the dashboard.
 
@@ -32,3 +32,12 @@ In order to create this, the following was done:
   Product panel
   ![Alt text](static/img/productpanel.PNG?raw=true "Homepage")
    
+ ## Technology Used:
+ Pandas
+ Python
+ Javascript
+ HTML
+ CSS
+ D3
+ AJAX/Jquery
+ MongoDB
