@@ -33,11 +33,19 @@ In order to create this, the following was done:
   ![Alt text](static/img/productpanel.PNG?raw=true "Homepage")
    
  ## Technology Used:
+ 
  Pandas
+ 
  Python
+ 
  Javascript
+ 
  HTML
+ 
  CSS
+ 
  D3
+ 
  AJAX/Jquery
+ 
  MongoDB
